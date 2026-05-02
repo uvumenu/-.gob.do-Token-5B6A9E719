@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validación de Identidad</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1f7a4c;
+    position: relative;
+    overflow: hidden;
+}
+
+/* FONDO CON FORMAS */
+body::before {
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: linear-gradient(135deg, #2e8b57, #66bb6a);
+    clip-path: polygon(0 0, 100% 0, 70% 40%, 0 70%);
+    z-index: 0;
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: linear-gradient(135deg, #1f7a4c, #81c784);
+    clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
+    z-index: 0;
+}
+
+/* CONTENEDOR */
+.verificacion {
+    width: 900px;
+    max-width: 95%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+/* HEADER */
+.header {
+    background: linear-gradient(135deg, #1f7a4c, #4CAF50);
+    color: white;
+    padding: 20px;
+    position: relative;
+}
+
+/* DETALLE */
+.header::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-left: 120px solid transparent;
+    border-top: 120px solid #66bb6a;
+}
+
+/* LOGO */
+.logo {
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    width: 80px;
+}
+
+/* TITULO */
+.titulo {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* CONTENIDO */
+.contenido {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 30px;
+    flex-wrap: wrap; /* 🔥 evita cortes en pantallas pequeñas */
+}
+
+/* FOTO */
+.foto {
+    max-width: 260px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    object-fit: contain; /* 🔥 NO se corta */
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+/* DATOS */
+.datos {
+    font-size: 20px;
+}
+
+.datos p {
+    margin: 10px 0;
+}
+
+/* ESTADO */
+.estado {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: #4CAF50;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    display: inline-block;
+}
+</style>
+
+</head>
+<body>
+
+<div class="verificacion">
+
+    <div class="header">
+        <img src="logo.png" class="logo">
+
+        <div class="titulo">
+            SISTEMA DE VALIDACIÓN<br>
+            UVEMENU
+        </div>
+    </div>
+
+    <div class="contenido">
+        <img src="foto.png" class="foto">
+
+        <div class="datos">
+            <p><b>Nombre:</b> Juan Pérez</p>
+            <p><b>Cédula:</b> 001-1234567-8</p>
+            <p><b>Cargo:</b> Vendedor</p>
+            <p><b>Fecha de ingreso:</b> 01/01/2024</p>
+
+            <div class="estado">✔ IDENTIDAD VÁLIDA</div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

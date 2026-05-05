@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validación de Identidad - UVEMENU</title>
+
+<style>
+/* --- ESTILOS GENERALES --- */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; 
+    /* Cambios aquí para asegurar visibilidad en móvil */
+    background-image: url('fondo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll; /* Cambiado de fixed a scroll para móviles */
+    background-color: #1f7a4c; /* Color de respaldo por si falla la imagen */
+}
+
+/* Capa verde semitransparente sobre el fondo */
+body::before {
+    content: "";
+    position: fixed; /* Cambiado a fixed para que cubra siempre toda la pantalla */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(31, 122, 76, 0.7); 
+    z-index: 0; 
+}
+
+.shape-1, .shape-2 {
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: linear-gradient(135deg, rgba(46, 139, 87, 0.4), rgba(102, 187, 106, 0.4));
+    z-index: 1; 
+}
+
+.shape-1 {
+    clip-path: polygon(0 0, 100% 0, 70% 40%, 0 70%);
+    top: -10%;
+    left: -10%;
+}
+
+.shape-2 {
+    background: linear-gradient(135deg, rgba(31, 122, 76, 0.4), rgba(129, 199, 132, 0.4));
+    clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
+    bottom: -10%;
+    right: -10%;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.verificacion {
+    width: 900px;
+    max-width: 95%;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+    margin: 20px 0; /* Espacio arriba y abajo en móvil */
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #1f7a4c, #4CAF50);
+    color: white;
+    padding: 25px 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 130px;
+}
+
+.logo {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 220px;
+    max-height: 160px;
+    object-fit: contain;
+    z-index: 2;
+}
+
+.titulo {
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 1.15;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    z-index: 2;
+    max-width: 520px;
+    padding-left: 80px;
+}
+
+/* --- CONTENIDO --- */
+.contenido {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px;
+    position: relative;
+}
+
+.foto-container {
+    width: 260px;
+    height: 320px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 4px solid #e0e0e0;
+    flex-shrink: 0;
+}
+
+.foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.datos {
+    font-size: 18px;
+    color: #333;
+    flex: 1; 
+    min-width: 280px;
+    position: relative;
+}
+
+.datos p {
+    margin: 12px 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+.datos b {
+    color: #1f7a4c;
+    margin-right: 5px;
+}
+
+.estado {
+    margin-top: 25px;
+    padding: 12px 20px;
+    background: #4CAF50;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 18px;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+}
+
+/* SELLO ABAJO A LA DERECHA */
+.sello-container {
+    position: absolute;
+    right: 30px;
+    bottom: 10px;
+    z-index: 5;
+}
+
+.sello {
+    width: 135px;
+    height: 135px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.35));
+    transform: rotate(12deg);
+}
+
+/* --- RESPONSIVE CELULAR --- */
+@media (max-width: 768px) {
+    body {
+        /* Ajuste de fondo para pantallas verticales */
+        background-attachment: scroll;
+        background-size: auto 100%; 
+    }
+
+    .header {
+        flex-direction: column;
+        padding: 20px;
+        min-height: auto;
+    }
+
+    .logo {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        width: 160px;
+        margin-bottom: 15px;
+    }
+
+    .titulo {
+        padding-left: 0;
+        font-size: 19px;
+        max-width: 100%;
+    }
+
+    .contenido {
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 20px;
+        padding-bottom: 90px; /* Espacio para el sello */
+    }
+
+    .foto-container {
+        width: 220px;
+        height: 270px;
+    }
+
+    .datos {
+        width: 100%;
+        min-width: auto;
+        text-align: left;
+    }
+
+    .sello-container {
+        right: 15px;
+        bottom: 10px;
+    }
+
+    .sello {
+        width: 110px;
+        height: 110px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Capas de fondo -->
+<div class="shape-1"></div>
+<div class="shape-2"></div>
+
+<div class="verificacion">
+
+    <div class="header">
+        <img src="logo.png" alt="Logo UVEMENU" class="logo">
+        <div class="titulo">
+            UNIÓN DE VENDEDORES<br>
+            DEL MERCADO NUEVO<br>
+            (UVEMENU)
+        </div>
+    </div>
+
+    <div class="contenido">
+        <div class="foto-container">
+            <img src="foto.png" alt="Foto de Gabriel Pimentel" class="foto">
+        </div>
+
+        <div class="datos">
+            <p><b>Nombre:</b> GABRIEL PIMENTEL</p>
+            <p><b>Cédula:</b> 001-1242039-3</p>
+            <p><b>Cargo:</b> Miembro</p>
+            <p><b>Código:</b> 0025</p>
+            <p><b>Fecha de ingreso:</b> 01/01/2024</p>
+
+            <div class="estado">✔ IDENTIDAD VÁLIDA</div>
+        </div>
+
+        <div class="sello-container">
+            <img src="sello.png" alt="Sello UVEMENU" class="sello">
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
